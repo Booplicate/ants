@@ -6,8 +6,8 @@ import (
 )
 
 // Max runs each worker does
-const MAX_RUNS int = 100
-const MAX_WORKERS int = 1000
+const MAX_RUNS int = 10000
+const MAX_WORKERS int = 32
 
 // The higher the factor, the more the distance
 // affects path choice

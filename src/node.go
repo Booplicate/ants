@@ -46,8 +46,3 @@ type NodeCon struct {
 	From Node
 	To   Node
 }
-
-// Represents connection statistics
-type NodeConStats struct {
-	Appeal float64
-}
