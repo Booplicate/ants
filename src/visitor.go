@@ -1,6 +1,6 @@
 package main
 
-// Struct keeps the nodes that should be visited
+// Keeps the nodes that should be visited
 type Visitor map[Node]struct{}
 
 // func (self *Visitor) ToSlice() []Node {

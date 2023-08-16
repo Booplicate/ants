@@ -34,15 +34,15 @@ func GetWeight(dist float64, priority float64) float64 {
 // Weighted choice for node selection based on the distance between nodes
 func SelectNextNode(from Node, nodes Visitor, manager *PriorityManager) Node {
 	choices := make([]Choice[Node], len(nodes))
-	for p := range nodes {
-		if p == from {
+	for n := range nodes {
+		if n == from {
 			panic("The from Node is in the slice of available Nodes")
 		}
-		dist := from.GetSqrDistanceTo(p)
-		priority := manager.GetPriority(from, p)
+		dist := from.GetSqrDistanceTo(n)
+		priority := manager.GetPriority(from, n)
 		weight := GetWeight(dist, priority)
 		// fmt.Printf("%v->%v: %v\n", from, p, weight)
-		c := Choice[Node]{Weight: weight, Item: p}
+		c := Choice[Node]{Weight: weight, Item: n}
 		choices = append(choices, c)
 	}
 	res := WeightedChoice(choices...)
@@ -158,11 +158,11 @@ func LaunchWorker(
 	// fmt.Printf("Started at %v\n", current)
 
 	for len(visit_next) > 0 {
-		p := SelectNextNode(current, visit_next, manager)
-		path = append(path, p)
-		visit_next.RemoveNode(p)
-		current = p
-		// fmt.Printf("Went to %v\n", p)
+		next := SelectNextNode(current, visit_next, manager)
+		path = append(path, next)
+		visit_next.RemoveNode(next)
+		current = next
+		// fmt.Printf("Went to %v\n", next)
 	}
 
 	path = append(path, start)
